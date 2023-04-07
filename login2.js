@@ -35,15 +35,12 @@ db.collection('login').findOne({ univid: univid }, function(err, user) {
 
     if (err) {
         res.status(500).send('Internal server error');
-        return;
       }
       if (!user) {
-        res.status(401).send('User not found');
-        return;
+        return res.redirect('not_user.html');
         }
       if (user.password !== password) {
-        res.status(401).send('Invalid password');
-        return;
+        return res.redirect('invalid_pass.html');
       }
       return res.redirect('form.html');
     });
